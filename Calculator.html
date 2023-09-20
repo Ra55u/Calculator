@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Calculator</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <input type="text" id="result" class="form-control text-right" readonly>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="appendToResult('1')">1</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="appendToResult('2')">2</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="appendToResult('3')">3</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-danger btn-block" onclick="clearResult()">C</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="appendToResult('4')">4</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="appendToResult('5')">5</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="appendToResult('6')">6</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block" onclick="performOperation('+')">+</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="appendToResult('7')">7</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="appendToResult('8')">8</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="appendToResult('9')">9</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block" onclick="performOperation('-')">-</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="appendToResult('0')">0</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-secondary btn-block" onclick="appendToResult('.')">.</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block" onclick="performOperation('*')">*</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block" onclick="performOperation('/')">/</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-info btn-block" onclick="calculateResult()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        let currentInput = '';
+
+        function appendToResult(value) {
+            currentInput += value;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function clearResult() {
+            currentInput = '';
+            document.getElementById('result').value = '';
+        }
+
+        function performOperation(operator) {
+            currentInput += operator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function calculateResult() {
+            try {
+                currentInput = eval(currentInput);
+                document.getElementById('result').value = currentInput;
+            } catch (error) {
+                document.getElementById('result').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
